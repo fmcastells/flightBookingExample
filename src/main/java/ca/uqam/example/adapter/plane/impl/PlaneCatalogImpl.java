@@ -12,10 +12,10 @@ public class PlaneCatalogImpl implements PlaneCatalog {
     private Map<PlaneType, PlaneInformation> planeMap = new HashMap<>();
 
     public PlaneCatalogImpl() {
-        planeMap.put(PlaneType.BOEING, new PlaneInformation(PlaneType.BOEING, 20, 25, 120));
-        planeMap.put(PlaneType.AIRBUS, new PlaneInformation(PlaneType.AIRBUS, 13, 18, 90));
-        planeMap.put(PlaneType.EMBRAER, new PlaneInformation(PlaneType.EMBRAER, 5, 10, 50));
-        planeMap.put(PlaneType.BOMBARDIER, new PlaneInformation(PlaneType.BOMBARDIER, 8, 13, 75));
+        planeMap.put(PlaneType.BOEING, new PlaneInformation(PlaneType.BOEING, 2, 5, 12));
+        planeMap.put(PlaneType.AIRBUS, new PlaneInformation(PlaneType.AIRBUS, 1, 1, 9));
+        planeMap.put(PlaneType.EMBRAER, new PlaneInformation(PlaneType.EMBRAER, 0, 1, 4));
+        planeMap.put(PlaneType.BOMBARDIER, new PlaneInformation(PlaneType.BOMBARDIER, 8, 2, 5));
     }
 
     @Override
