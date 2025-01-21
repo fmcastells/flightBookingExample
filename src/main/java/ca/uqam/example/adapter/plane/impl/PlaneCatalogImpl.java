@@ -15,7 +15,7 @@ public class PlaneCatalogImpl implements PlaneCatalog {
         planeMap.put(PlaneType.BOEING, new PlaneInformation(PlaneType.BOEING, 2, 5, 12));
         planeMap.put(PlaneType.AIRBUS, new PlaneInformation(PlaneType.AIRBUS, 1, 1, 9));
         planeMap.put(PlaneType.EMBRAER, new PlaneInformation(PlaneType.EMBRAER, 0, 1, 4));
-        planeMap.put(PlaneType.BOMBARDIER, new PlaneInformation(PlaneType.BOMBARDIER, 8, 2, 5));
+        planeMap.put(PlaneType.BOMBARDIER, new PlaneInformation(PlaneType.BOMBARDIER, 0, 2, 5));
     }
 
     @Override
