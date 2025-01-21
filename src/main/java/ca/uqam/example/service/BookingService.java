@@ -1,6 +1,5 @@
 package ca.uqam.example.service;
 
-import ca.uqam.example.adapter.flight.impl.FlightSeatsCounter;
 import ca.uqam.example.model.passenger.BusinessClassPassenger;
 import ca.uqam.example.model.passenger.EconomiClassPassenger;
 import ca.uqam.example.model.passenger.FirstClassPassenger;

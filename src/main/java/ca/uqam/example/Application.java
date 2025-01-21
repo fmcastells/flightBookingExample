@@ -2,7 +2,7 @@ package ca.uqam.example;
 
 import ca.uqam.example.adapter.flight.FlightCatalog;
 import ca.uqam.example.adapter.flight.impl.FlightCatalogImpl;
-import ca.uqam.example.adapter.flight.impl.FlightSeatsCounter;
+import ca.uqam.example.service.FlightSeatsCounter;
 import ca.uqam.example.adapter.plane.PlaneCatalog;
 import ca.uqam.example.adapter.plane.impl.PlaneCatalogImpl;
 import ca.uqam.example.model.passenger.Passenger;

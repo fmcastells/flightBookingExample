@@ -1,4 +1,4 @@
-package ca.uqam.example.adapter.flight.impl;
+package ca.uqam.example.service;
 
 import ca.uqam.example.adapter.flight.FlightCatalog;
 import ca.uqam.example.adapter.plane.PlaneCatalog;
