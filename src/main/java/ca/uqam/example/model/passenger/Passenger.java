@@ -4,10 +4,10 @@ public abstract class Passenger {
 
     private String passport;
     private String name;
-    private double age;
+    private int age;
     private PassengerType type;
 
-    public Passenger(String passport, String name, double age) {
+    public Passenger(String passport, String name, int age) {
         this.passport = passport;
         this.name = name;
         this.age = age;
@@ -23,7 +23,7 @@ public abstract class Passenger {
         return name;
     }
 
-    public double getAge() {
+    public int getAge() {
         return age;
     }
 }

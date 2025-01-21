@@ -2,7 +2,6 @@ package ca.uqam.example.adapter.flight.impl;
 
 import ca.uqam.example.adapter.flight.FlightCatalog;
 import ca.uqam.example.model.flight.FlightInformation;
-import ca.uqam.example.model.plane.PlaneInformation;
 import ca.uqam.example.model.plane.PlaneType;
 
 import java.util.HashMap;
