@@ -33,6 +33,7 @@ public class Application {
             String continueChoice = scanner.nextLine();
             if ("no".equalsIgnoreCase(continueChoice)) {
                 shouldContinue = false;
+                scanner.close();
             }
         }
     }
