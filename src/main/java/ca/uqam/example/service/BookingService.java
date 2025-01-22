@@ -13,7 +13,7 @@ public class BookingService {
         this.flightSeatsCounter = flightSeatsCounter;
     }
 
-    public void book(Passenger passenger, String flightNumber) {
+    public void book(Passenger passenger) {
         if (flightSeatsCounter.numberOfTotalSeatsAvailable() != 0) {
             if (passenger instanceof FirstClassPassenger) {
                 if (flightSeatsCounter.numberOfFirstClassSeatsAvailable() == 0) {
@@ -30,9 +30,11 @@ public class BookingService {
             if (passenger instanceof EconomiClassPassenger) {
                 if (flightSeatsCounter.numberOfEconomyClassSeatsAvailable() == 0) {
                     System.out.println("Flight is Full. Try another flight...");
+                    return;
                 }
             }
             flightSeatsCounter.addPassenger(passenger);
+            System.out.println("Passenger added successfully");
         } else {
             System.out.println("Flight is Full...");
         }

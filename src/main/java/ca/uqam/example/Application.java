@@ -27,7 +27,7 @@ public class Application {
             PassengerService passengerService = new PassengerService();
             Passenger passenger = passengerService.createPassenger(scanner);
             BookingService bookingService = new BookingService(flightSeatsCounter);
-            bookingService.book(passenger, flightNumber);
+            bookingService.book(passenger);
             System.out.println("Seats available: " + flightSeatsCounter.numberOfTotalSeatsAvailable());
             System.out.println("Continue adding passengers? yes or no?");
             String continueChoice = scanner.nextLine();
