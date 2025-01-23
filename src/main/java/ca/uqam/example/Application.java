@@ -9,13 +9,14 @@ import ca.uqam.example.model.passenger.Passenger;
 import ca.uqam.example.service.BookingService;
 import ca.uqam.example.service.FlightService;
 import ca.uqam.example.service.PassengerService;
+import com.amazonaws.adapters.types.StringToByteBufferAdapter;
 
 import java.util.Scanner;
 
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println("ServiceStarted...");
+        System.out.println("Service started...");
         Scanner scanner = new Scanner(System.in);
         PlaneCatalog planeCatalog = new PlaneCatalogImpl();
         FlightCatalog flightCatalog = new FlightCatalogImpl();
