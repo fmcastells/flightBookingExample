@@ -19,7 +19,7 @@ import static org.mockito.Mockito.mock;
 @ExtendWith(MockitoExtension.class)
 public class FlightServiceTest {
 
-    public static final String FLIGHT_NUMBER = "flightNumber";
+    private static final String FLIGHT_NUMBER = "flightNumber";
 
     @InjectMocks
     private FlightService flightService;
