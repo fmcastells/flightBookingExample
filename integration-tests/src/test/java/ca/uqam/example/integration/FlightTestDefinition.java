@@ -17,26 +17,34 @@ import ca.uqam.mgl7230.tp1.service.prompt.PassengerPromptService;
 import ca.uqam.mgl7230.tp1.utils.DistanceCalculator;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.mockito.BDDMockito;
 import org.mockito.MockedStatic;
 import org.mockito.stubbing.Answer;
 
 import java.io.*;
+import java.util.List;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 
 public class FlightTestDefinition {
 
     private String passengerPassport;
+    private List<String> passengerPassports;
     private String passengerName;
+    private List<String> passengerNames;
     private int passengerAge;
+    private List<String> passengerAges;
     private String passengerType;
+    private List<String> passengerTypes;
     private PassengerClass expectedPassengerType;
     private String flightNumber;
     private MockedStatic<ApplicationInitializer> mockApplicationInitializer;
@@ -77,7 +85,10 @@ public class FlightTestDefinition {
         given(mockPlaneCatalog.getNumberSeatsBusinessClass(PlaneType.BOEING)).willReturn(numberOfBusinessClassSeats);
         given(mockPlaneCatalog.getNumberSeatsEconomyClass(PlaneType.BOEING)).willReturn(numberOfEconomyClassSeats);
         given(mockPlaneCatalog.getNumberOfTotalSeats(PlaneType.BOEING)).willReturn(numberOfFirstClassSeats + numberOfBusinessClassSeats + numberOfEconomyClassSeats);
+    }
 
+    @Given("service is initialized")
+    public void systemIsInitialized() {
         FlightPassengerService flightPassengerService = new FlightPassengerService(mockPlaneCatalog, mockFlightCatalog);
         FlightPromptService flightPromptService = new FlightPromptService(mockFlightCatalog);
         PassengerPromptService passengerPromptService = new PassengerPromptService();
@@ -90,7 +101,7 @@ public class FlightTestDefinition {
         mockApplicationInitializer.when(ApplicationInitializer::flightPassengerService)
                 .thenReturn(flightPassengerService);
         mockApplicationInitializer.when(ApplicationInitializer::flightCatalog)
-                        .thenReturn(mockFlightCatalog);
+                .thenReturn(mockFlightCatalog);
         mockApplicationInitializer.when(ApplicationInitializer::flightPromptService)
                 .thenReturn(flightPromptService);
         mockApplicationInitializer.when(ApplicationInitializer::passengerPromptService)
@@ -122,6 +133,27 @@ public class FlightTestDefinition {
         this.passengerAge = age;
     }
 
+
+    @Given("a passenger with passport number:")
+    public void aPassengerWithPassportNumber(List<String> passengerPassports) {
+        this.passengerPassports = passengerPassports;
+    }
+
+    @Given("name:")
+    public void name(List<String> passengerNames) {
+        this.passengerNames = passengerNames;
+    }
+
+    @Given("age:")
+    public void age(List<String> passengerAges) {
+        this.passengerAges = passengerAges;
+    }
+
+    @Given("looking to buy in class:")
+    public void lookingToBuyInClass(List<String> passengerTypes) {
+        this.passengerTypes = passengerTypes;
+    }
+
     @Given("looking to buy in {string} class")
     public void lookingToBuyInClass(String passengerClass) {
         this.passengerType = passengerClass;
@@ -132,15 +164,30 @@ public class FlightTestDefinition {
         }
     }
 
-    @When("agent pass all information to the system")
-    public void agentPassAllInformationToTheSystem() {
-        given(scanner.nextLine())
-                .willReturn(flightNumber)
-                .willReturn(passengerPassport)
-                .willReturn(passengerName)
-                .willReturn(String.valueOf(passengerAge))
-                .willReturn(passengerType)
-                .willReturn("no");
+    @When("agent pass all information to the system and continue {string}")
+    public void agentPassAllInformationToTheSystem(String continueAdding) {
+        if (passengerPassports.isEmpty()) {
+            given(scanner.nextLine())
+                    .willReturn(flightNumber)
+                    .willReturn(passengerPassport)
+                    .willReturn(passengerName)
+                    .willReturn(String.valueOf(passengerAge))
+                    .willReturn(passengerType)
+                    .willReturn(continueAdding);
+        } else {
+            BDDMockito.BDDMyOngoingStubbing<String> stringBDDMyOngoingStubbing = given(scanner.nextLine()).willReturn(flightNumber);
+            for (int i = 0; i < passengerPassports.size(); i++) {
+                stringBDDMyOngoingStubbing.willReturn(passengerPassports.get(i));
+                stringBDDMyOngoingStubbing.willReturn(passengerNames.get(i));
+                stringBDDMyOngoingStubbing.willReturn(passengerAges.get(i));
+                stringBDDMyOngoingStubbing.willReturn(passengerTypes.get(i));
+                if (!(i == (passengerPassports.size() - 1))) {
+                    stringBDDMyOngoingStubbing.willReturn(continueAdding);
+                } else {
+                    stringBDDMyOngoingStubbing.willReturn("no");
+                }
+            }
+        }
     }
 
     @When("system is called")
@@ -160,6 +207,34 @@ public class FlightTestDefinition {
             assertThat(actualLine).contains(passengerName);
             assertThat(actualLine).contains(String.valueOf(passengerAge));
             assertThat(actualLine).contains(expectedPassengerType.name());
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+    }
+
+    @Then("passenger {string} is added to fly {string}")
+    public void passengerIsAddedToFly(String passengerName, String flightNumber) {
+        String filePath = "passengerData.csv";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            StringBuilder actualLine = new StringBuilder();
+            br.lines().forEach(actualLine::append);
+            assertThat(actualLine).contains(flightNumber);
+            assertThat(actualLine).contains(passengerName);
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+    }
+
+    @Then("passenger {string} is not added to fly {string}")
+    public void passengerIsNotAddedToFly(String passengerName, String flightNumber) {
+        String filePath = "passengerData.csv";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            StringBuilder actualLine = new StringBuilder();
+            br.lines().forEach(actualLine::append);
+            assertThat(actualLine).contains(flightNumber);
+            assertThat(actualLine).doesNotContain(passengerName);
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
         }
