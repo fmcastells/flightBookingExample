@@ -1,5 +1,6 @@
-package ca.uqam.mgl7230.tp1.adapter.plane;
+package ca.uqam.mgl7230.tp1.adapter.plane.impl;
 
+import ca.uqam.mgl7230.tp1.adapter.plane.PlaneCatalog;
 import ca.uqam.mgl7230.tp1.model.plane.PlaneInformation;
 import ca.uqam.mgl7230.tp1.model.plane.PlaneType;
 

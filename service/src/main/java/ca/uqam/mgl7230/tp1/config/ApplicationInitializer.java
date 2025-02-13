@@ -1,10 +1,10 @@
 package ca.uqam.mgl7230.tp1.config;
 
 import ca.uqam.mgl7230.tp1.adapter.flight.FlightCatalog;
-import ca.uqam.mgl7230.tp1.adapter.flight.FlightCatalogImpl;
+import ca.uqam.mgl7230.tp1.adapter.flight.impl.FlightCatalogImpl;
 import ca.uqam.mgl7230.tp1.adapter.persist.SavePassengerInFlight;
 import ca.uqam.mgl7230.tp1.adapter.plane.PlaneCatalog;
-import ca.uqam.mgl7230.tp1.adapter.plane.PlaneCatalogImpl;
+import ca.uqam.mgl7230.tp1.adapter.plane.impl.PlaneCatalogImpl;
 import ca.uqam.mgl7230.tp1.service.BookingService;
 import ca.uqam.mgl7230.tp1.service.FlightPassengerService;
 import ca.uqam.mgl7230.tp1.service.PassengerService;
@@ -12,8 +12,6 @@ import ca.uqam.mgl7230.tp1.service.prompt.FlightPromptService;
 import ca.uqam.mgl7230.tp1.service.prompt.PassengerPromptService;
 import ca.uqam.mgl7230.tp1.utils.DistanceCalculator;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class ApplicationInitializer {

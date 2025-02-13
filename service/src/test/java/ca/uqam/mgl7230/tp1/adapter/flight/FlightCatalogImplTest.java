@@ -1,5 +1,6 @@
 package ca.uqam.mgl7230.tp1.adapter.flight;
 
+import ca.uqam.mgl7230.tp1.adapter.flight.impl.FlightCatalogImpl;
 import ca.uqam.mgl7230.tp1.model.flight.FlightInformation;
 import ca.uqam.mgl7230.tp1.model.plane.PlaneType;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,16 +1,13 @@
 Feature: Test Suite for successfully adding passenger to flight
 
-  Background:
-    Given passenger is looking for flight number "UQAM001"
-    Given flight catalog is mocked
-    And plane catalog is mocked where number of first class seats is 1, number of business class seats is 2 and number of economy seats is 3
-
   Scenario Outline: Add First Class Passenger
-    Given a passenger with passport number "<passengerPassport>"
+    Given passenger selects flight "<flightNumber>"
+    And flight catalog is mocked
+    And plane catalog is mocked where number of first class seats is 1, number of business class seats is 2 and number of economy seats is 3
+    And a passenger with passport number "<passengerPassport>"
     And name "<passengerName>"
     And age <passengerAge>
     And looking to buy in "<passengerClass>" class
-    And passenger selects flight "<flightNumber>"
     When agent pass all information to the system
     And system is called
     Then passenger is added to fly "<flightNumber>"

@@ -1,5 +1,6 @@
 package ca.uqam.mgl7230.tp1.adapter.plane;
 
+import ca.uqam.mgl7230.tp1.adapter.plane.impl.PlaneCatalogImpl;
 import ca.uqam.mgl7230.tp1.model.plane.PlaneType;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

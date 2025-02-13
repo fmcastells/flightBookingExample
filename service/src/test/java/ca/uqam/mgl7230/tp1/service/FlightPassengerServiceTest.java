@@ -9,6 +9,7 @@ import ca.uqam.mgl7230.tp1.model.plane.PlaneType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -44,7 +45,8 @@ public class FlightPassengerServiceTest {
         // Given
         given(passenger.getType()).willReturn(FIRST_CLASS);
         given(planeCatalog.getNumberSeatsFirstClass(PLANE_TYPE)).willReturn(2);
-        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog, , FLIGHT_NUMBER);
+        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog);
+        flightPassengerService.initializeFlightService(FLIGHT_NUMBER);
 
         // When
         flightPassengerService.addPassenger(passenger);
@@ -59,7 +61,8 @@ public class FlightPassengerServiceTest {
         // Given
         given(passenger.getType()).willReturn(PassengerClass.BUSINESS_CLASS);
         given(planeCatalog.getNumberSeatsBusinessClass(PLANE_TYPE)).willReturn(2);
-        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog, , FLIGHT_NUMBER);
+        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog);
+        flightPassengerService.initializeFlightService(FLIGHT_NUMBER);
 
         // When
         flightPassengerService.addPassenger(passenger);
@@ -74,7 +77,8 @@ public class FlightPassengerServiceTest {
         // Given
         given(passenger.getType()).willReturn(PassengerClass.ECONOMY_CLASS);
         given(planeCatalog.getNumberSeatsEconomyClass(PLANE_TYPE)).willReturn(2);
-        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog, , FLIGHT_NUMBER);
+        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog);
+        flightPassengerService.initializeFlightService(FLIGHT_NUMBER);
 
         // When
         flightPassengerService.addPassenger(passenger);
@@ -89,7 +93,8 @@ public class FlightPassengerServiceTest {
         // Given
         given(passenger.getType()).willReturn(FIRST_CLASS);
         given(planeCatalog.getNumberSeatsFirstClass(PLANE_TYPE)).willReturn(0);
-        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog, , FLIGHT_NUMBER);
+        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog);
+        flightPassengerService.initializeFlightService(FLIGHT_NUMBER);
 
         // When
         flightPassengerService.addPassenger(passenger);
@@ -104,7 +109,8 @@ public class FlightPassengerServiceTest {
         // Given
         given(passenger.getType()).willReturn(PassengerClass.BUSINESS_CLASS);
         given(planeCatalog.getNumberSeatsBusinessClass(PLANE_TYPE)).willReturn(0);
-        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog, , FLIGHT_NUMBER);
+        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog);
+        flightPassengerService.initializeFlightService(FLIGHT_NUMBER);
 
         // When
         flightPassengerService.addPassenger(passenger);
@@ -119,7 +125,8 @@ public class FlightPassengerServiceTest {
         // Given
         given(passenger.getType()).willReturn(PassengerClass.ECONOMY_CLASS);
         given(planeCatalog.getNumberSeatsEconomyClass(PLANE_TYPE)).willReturn(0);
-        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog, , FLIGHT_NUMBER);
+        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog);
+        flightPassengerService.initializeFlightService(FLIGHT_NUMBER);
 
         // When
         flightPassengerService.addPassenger(passenger);
@@ -136,7 +143,8 @@ public class FlightPassengerServiceTest {
         given(planeCatalog.getNumberSeatsFirstClass(PLANE_TYPE)).willReturn(2);
         given(planeCatalog.getNumberSeatsBusinessClass(PLANE_TYPE)).willReturn(2);
         given(planeCatalog.getNumberSeatsEconomyClass(PLANE_TYPE)).willReturn(2);
-        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog, , FLIGHT_NUMBER);
+        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog);
+        flightPassengerService.initializeFlightService(FLIGHT_NUMBER);
 
         // When
         flightPassengerService.addPassenger(passenger);
@@ -151,7 +159,8 @@ public class FlightPassengerServiceTest {
         // Given
         given(passenger.getType()).willReturn(DEFAULT);
         given(planeCatalog.getNumberSeatsFirstClass(PLANE_TYPE)).willReturn(2);
-        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog, , FLIGHT_NUMBER);
+        flightPassengerService = new FlightPassengerService(planeCatalog, flightCatalog);
+        flightPassengerService.initializeFlightService(FLIGHT_NUMBER);
 
         // When
         flightPassengerService.addPassenger(passenger);
