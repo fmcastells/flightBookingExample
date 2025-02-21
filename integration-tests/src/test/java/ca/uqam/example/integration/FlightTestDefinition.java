@@ -166,7 +166,7 @@ public class FlightTestDefinition {
 
     @When("agent pass all information to the system and continue {string}")
     public void agentPassAllInformationToTheSystem(String continueAdding) {
-        if (passengerPassports.isEmpty()) {
+        if (passengerPassports == null) {
             given(scanner.nextLine())
                     .willReturn(flightNumber)
                     .willReturn(passengerPassport)
