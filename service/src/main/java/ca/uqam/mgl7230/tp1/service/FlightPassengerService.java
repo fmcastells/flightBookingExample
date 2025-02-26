@@ -40,12 +40,11 @@ public class FlightPassengerService {
                     totalAmountBusinessClassSeats = totalAmountBusinessClassSeats - 1;
                 }
             }
-            case ECONOMY_CLASS -> {
+            default -> {
                 if (totalAmountEconomyClassSeats != 0) {
                     totalAmountEconomyClassSeats = totalAmountEconomyClassSeats - 1;
                 }
             }
-            default -> System.out.println("Passenger Type not specified");
         }
     }
 
