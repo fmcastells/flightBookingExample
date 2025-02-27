@@ -1,17 +1,29 @@
 package ca.uqam.mgl7230.tp1;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 @ExtendWith(MockitoExtension.class)
 class ApplicationTest {
+
+    @AfterEach
+    void tearDown() {
+        File file = new File("passengerData.csv");
+        boolean delete = file.delete();
+        if(!delete) {
+            fail();
+        }
+    }
 
     @Test
     void instantiateApplicationClass() {

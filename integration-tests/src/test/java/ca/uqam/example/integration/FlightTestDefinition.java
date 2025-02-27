@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willReturn;
 import static org.mockito.Mockito.mock;
@@ -64,6 +65,11 @@ public class FlightTestDefinition {
     public void tearDown() {
         mockApplicationInitializer.reset();
         mockApplicationInitializer.close();
+        File file = new File("passengerData.csv");
+        boolean delete = file.delete();
+        if(!delete) {
+            fail();
+        }
     }
 
     @Given("passenger selects flight {string}")
@@ -133,7 +139,6 @@ public class FlightTestDefinition {
         this.passengerAge = age;
     }
 
-
     @Given("a passenger with passport number:")
     public void aPassengerWithPassportNumber(List<String> passengerPassports) {
         this.passengerPassports = passengerPassports;
@@ -175,7 +180,8 @@ public class FlightTestDefinition {
                     .willReturn(passengerType)
                     .willReturn(continueAdding);
         } else {
-            BDDMockito.BDDMyOngoingStubbing<String> stringBDDMyOngoingStubbing = given(scanner.nextLine()).willReturn(flightNumber);
+            BDDMockito.BDDMyOngoingStubbing<String> stringBDDMyOngoingStubbing = given(scanner.nextLine())
+                    .willReturn(flightNumber);
             for (int i = 0; i < passengerPassports.size(); i++) {
                 stringBDDMyOngoingStubbing.willReturn(passengerPassports.get(i));
                 stringBDDMyOngoingStubbing.willReturn(passengerNames.get(i));
@@ -191,7 +197,7 @@ public class FlightTestDefinition {
     }
 
     @When("system is called")
-    public void systemIsCalled() {
+    public void systemIsCalled() throws IOException {
         Application.main(new String[]{});
     }
 
