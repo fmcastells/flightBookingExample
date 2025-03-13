@@ -2,7 +2,6 @@ package ca.uqam.mgl7230.tp1.service;
 
 import ca.uqam.mgl7230.tp1.model.passenger.Passenger;
 import ca.uqam.mgl7230.tp1.model.passenger.PassengerKeyConstants;
-import ca.uqam.mgl7230.tp1.service.prompt.PassengerPromptService;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,8 +30,8 @@ public class ExecuteService {
                 String continueChoice = scanner().nextLine();
                 if ("no".equalsIgnoreCase(continueChoice)) {
                     shouldContinue = false;
-                    scanner().close();
                     fileWriter.close();
+                    scanner().close();
                 }
             }
         } catch (IOException e) {
