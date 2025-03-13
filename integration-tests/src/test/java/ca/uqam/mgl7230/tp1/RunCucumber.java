@@ -1,4 +1,4 @@
-package ca.uqam.example;
+package ca.uqam.mgl7230.tp1;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

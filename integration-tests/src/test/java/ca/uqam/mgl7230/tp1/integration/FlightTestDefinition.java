@@ -1,4 +1,4 @@
-package ca.uqam.example.integration;
+package ca.uqam.mgl7230.tp1.integration;
 
 import ca.uqam.mgl7230.tp1.Application;
 import ca.uqam.mgl7230.tp1.adapter.flight.FlightCatalog;
