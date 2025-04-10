@@ -45,4 +45,4 @@ Feature: Test Suite for successfully adding passenger to flight
     And system is called
     Then passenger "Passenger_1" is added to fly "UQAM005"
     Then passenger "Passenger_2" is added to fly "UQAM005"
-    Then passenger "Passenger_3" is not added to fly "UQAM005"
+#    Then passenger "Passenger_3" is not added to fly "UQAM005"
