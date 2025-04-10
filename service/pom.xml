@@ -234,6 +234,7 @@
                     <mutationThreshold>100</mutationThreshold>
                     <coverageThreshol>100</coverageThreshol>
                     <excludedClasses>
+                        <param>ca.uqam.mgl7230.tp1.config.*</param>
                     </excludedClasses>
                     <excludedTestClasses>
                         <param>ca.uqam.mgl7230.tp1.integration.*</param>
